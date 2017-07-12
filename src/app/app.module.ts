@@ -15,6 +15,7 @@ import { TypeHeadInputComponent } from './type-head-input/type-head-input.compon
 // import { NgxTypeaheadModule } from 'ngx-typeahead';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { JsonpModule } from '@angular/http';
+import { CrisisCenterComponent } from './crisis-center/crisis-center.component';
 
 
 
@@ -25,7 +26,8 @@ import { JsonpModule } from '@angular/http';
     HeroesComponent,
     DashboardComponent,
     HeroSearchComponent,
-    TypeHeadInputComponent
+    TypeHeadInputComponent,
+    CrisisCenterComponent
   ],
   imports: [
     BrowserModule,

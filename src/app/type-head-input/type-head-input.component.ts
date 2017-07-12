@@ -19,44 +19,44 @@ export class WikipediaService {
       return of.call([]);
     }
     return map.call(this.http.get(this.url),
-      response => (
-        <string[]> response.json())
-        // console.log(response.json()[1]);
-      );
+    response => (
+      <string[]> response.json())
+      // console.log(response.json()[1]);
+    );
   }
 }
 @Component({
   selector: 'app-type-head-input',
   templateUrl: './type-head-input.component.html',
-   providers: [WikipediaService],
+  providers: [WikipediaService],
   styleUrls: ['./type-head-input.component.css']
 })
 export class TypeHeadInputComponent  {
 
   model: any;
-    searching = false;
-    searchFailed = false;
+  searching = false;
+  searchFailed = false;
 
-    constructor(private _service: WikipediaService) {}
+  constructor(private _service: WikipediaService) {}
 
-      formatter = (result: any) => result.name.toUpperCase();
+  formatter = (result: any) => result.name.toUpperCase();
 
-    search = (text$: Observable<string>) =>
+  search = (text$: Observable<string>) =>
+  _do.call(
+    switchMap.call(
       _do.call(
-        switchMap.call(
-          _do.call(
-            distinctUntilChanged.call(
-              debounceTime.call(text$, 300)),
-            () => this.searching = true),
+        distinctUntilChanged.call(
+          debounceTime.call(text$, 300)),
+          () => this.searching = true),
           term =>
-            _catch.call(
-              _do.call(this._service.search(term), () => this.searchFailed = false),
-              () => {
-                this.searchFailed = true;
-                return of.call([]);
-              }
-            )
+          _catch.call(
+            _do.call(this._service.search(term), () => this.searchFailed = false),
+            () => {
+              this.searchFailed = true;
+              return of.call([]);
+            }
+          )
         ),
         () => this.searching = false);
 
-}
+      }

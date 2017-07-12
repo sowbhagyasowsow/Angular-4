@@ -1,8 +1,14 @@
 
+<ng-template #rt let-r="result" let-t="term">
+  <img [src]="'https://upload.wikimedia.org/wikipedia/commons/thumb/' + r['flag']" width="16">
+  {{r.name}}
+</ng-template>
+
 <label for="typeahead-basic">Search for a state:</label>
 <input id="typeahead-basic" type="text" class="form-control" [(ngModel)]="model"
 [ngbTypeahead]="search"
 [inputFormatter]="formatter"
-[resultFormatter]="formatter"/>
+[resultFormatter]="formatter"
+[resultTemplate]="rt"/>
 <hr>
 <pre>Model: {{ model | json }}</pre>
